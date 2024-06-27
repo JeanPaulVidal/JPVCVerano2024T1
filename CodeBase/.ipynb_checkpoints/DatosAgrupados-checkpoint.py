@@ -20,33 +20,29 @@ def frecAc(frec):
 
 import math
 
+import math
+
 def clases_groped(datos):
     datos.sort()
     minVal = datos[0]
-    maxVal = datos[0]
-    
-    for num in datos:
-        if num > maxVal:
-            maxVal = num
-        if num < minVal:
-            minVal = num
+    maxVal = datos[-1]
     
     rango = maxVal - minVal
-    numClases = 1 + 3.3 * math.log10(len(datos))
-    numClases = int(numClases)
+    numClases = 6
     anchoClase = rango / numClases
 
     limsInf = []
     limsSup = []
     mrksClases = []
-    for i in range(1,numClases+1):
-        limSup = i*anchoClase
-        limInf = limSup-anchoClase
-        mrkClase = (limSup + limInf)/2
-        limsSup.append(limSup)
+    for i in range(1, numClases+1):
+        limInf = minVal + (i-1) * anchoClase
+        limSup = minVal + i * anchoClase
+        mrkClase = (limInf + limSup) / 2
         limsInf.append(limInf)
+        limsSup.append(limSup)
         mrksClases.append(mrkClase)
-    clases = list(range(1,numClases+1))
+    
+    clases = list(range(1, numClases+1))
     return clases, limsInf, limsSup, mrksClases
 
 
